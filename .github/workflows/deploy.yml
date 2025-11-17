@@ -17,4 +17,4 @@ jobs:
         script: |
           cd proyek-ujk
           git pull origin main
-          sudo docker-compose up -d --build
+          sudo docker compose up -d --build
