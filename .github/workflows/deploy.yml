@@ -1,0 +1,20 @@
+name: Deploy to AWS
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    name: Deploy via SSH
+    runs-on: ubuntu-latest
+    steps:
+    - name: Eksekusi Remote SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd proyek-ujk
+          git pull origin main
+          sudo docker-compose up -d --build
